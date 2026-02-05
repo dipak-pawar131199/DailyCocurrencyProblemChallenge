@@ -1,0 +1,33 @@
+🧠 Concurrency Challenge: Concurrent URL Status Checker
+Problem Statement
+
+You are given a list of URLs.
+Your task is to check their HTTP status codes concurrently and return the results.
+
+Requirements: 
+1) Use goroutines to make concurrent HTTP requests
+2) Use channels to collect results
+3) Limit concurrency to N workers (worker pool pattern)
+4) Handle timeouts properly
+5) Preserve input order in the output
+
+
+Input:
+
+urls := []string{
+    "https://google.com",
+    "https://github.com",
+    "https://invalid-url",
+    "https://golang.org",
+}
+
+workers := 2
+
+
+Expected output:
+https://google.com  -> 200
+https://github.com -> 200
+https://invalid-url -> error
+https://golang.org -> 200
+
+(Output order must match input order)
