@@ -1,0 +1,26 @@
+📌 Problem Statement: Concurrent muliplications of numbers
+
+You are given N jobs (numbers).
+Process them using a fixed number of workers and print the result.
+
+Each job:
+1) Takes time (simulate with time.Sleep)
+2) Computes job * job
+
+✅ Requirements
+1) Use goroutines
+2) Use channels
+3) Use worker pool pattern
+4) Use sync.WaitGroup
+5) No goroutine leaks
+6) Workers should exit gracefully
+
+📝 Input
+jobs := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
+numWorkers := 3
+
+🎯 Expected Output (order may vary):
+Worker 1 processed job 2 → result 4
+Worker 3 processed job 1 → result 1
+Worker 2 processed job 3 → result 9
+...
