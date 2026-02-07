@@ -1,0 +1,35 @@
+🔥 Day 3 Cancelable Pipeline with Partial Results (Very Real-World)
+
+🧠 Problem Statement
+
+You are building a data processing pipeline with 3 stages:
+
+1) Producer – generates numbers 1 → N
+2) Processor – squares each number (simulate slow work)
+3) Consumer – collects results
+
+👉 BUT there is a twist:
+
+1) If processing time exceeds a given timeout,
+the whole pipeline must cancel immediately
+2) Already processed results must still be printed
+3) No goroutine leaks allowed
+
+
+📌 Constraints
+
+Use:
+context.Context for cancellation
+Goroutines + channels
+Each processing step takes 200ms
+Timeout = 700ms
+N = 10
+
+🎯 Expected Behavior
+
+Processed: 1 -> 1
+Processed: 2 -> 4
+Processed: 3 -> 9
+Processed: 4 -> 16
+Pipeline cancelled due to timeout
+(Exact count may vary slightly)
