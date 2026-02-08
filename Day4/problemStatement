@@ -1,0 +1,43 @@
+🚀 Day 4 Challenge: Rate-Limited Worker Pool
+
+🧩 Problem Statement
+You have multiple tasks to process concurrently, but:
+1) Only N workers can run at a time
+2) Tasks must be processed at max X requests per second (rate limiting)
+3) You must support graceful shutdown using context.Context
+4) Processing operation :
+  1. Simulate heavy processing using sleep (300–700 ms)
+  2. Compute:
+    result = n*n + 10
+  3. Return:
+    - original task
+    - result
+    - processing duration
+
+Capture:
+1) task result
+2) task execution time
+3) total processing time
+
+📥 Input
+
+tasks := []int{1,2,3,4,5,6,7,8,9,10}
+workers := 3
+rateLimit := 2 // tasks per second
+
+📤 Expected Output (sample)
+Worker 1 processed task 2 in 503ms
+Worker 3 processed task 1 in 498ms
+Worker 2 processed task 3 in 510ms
+...
+Total execution time: 5.2s
+
+
+🧠 Hints
+Use one ticker shared across all workers
+Each worker should:
+1) wait for ticker
+2) read from task channel
+3) respect ctx.Done()
+5) Use sync.WaitGroup
+6) Track execution time using time.Now()
