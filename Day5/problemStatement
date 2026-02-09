@@ -1,0 +1,26 @@
+🚀 Golang Concurrency – Day5 Fan-In Pattern with Timeout & Processing Time
+
+🧠 Concepts Covered
+1) Multiple producer
+2) Fan-In (many → one channel)
+3) select with time.After
+4) Context cancellation
+5) Measuring per-task and total processing time
+6) Safe channel closing
+
+📌 Problem Statement:
+
+1) You have 2 producers generating numbers concurrently.
+2) Each producer:
+  . Generates numbers from 1 to 10
+  . Adds a random delay (100–500ms) before sending
+3) A single consumer:
+  . Receives values from both producers (fan-in)
+
+5) Processes each number:
+   result = n*n + 5
+
+Prints:
+ Producer ID
+ Value
+ Processing time per task
