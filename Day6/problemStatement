@@ -1,0 +1,48 @@
+🚀 Golang Concurrency – Day 6 Problem Statement
+Pipeline Pattern with Fan-Out, Fan-In & Error Handling
+
+📌 Scenario
+
+You are building a data processing pipeline (think ETL / report generation).
+
+Data flows through 3 stages:
+Generator → Processor → Aggregator
+🧩 Stage Details
+Stage 1: Generator 
+   1) Generates numbers from 1 to N
+   2) Sends numbers to the pipeline
+   3) Stops immediately if context is cancelled
+Stage 2: Processor (Fan-Out)
+   1) Runs M workers
+     Each worker:
+        Receives a number
+        Simulates processing (200–500ms)
+        If number is divisible by 7, treat it as an error
+        Otherwise transforms:
+        output = n*n
+     Sends:
+        Successful results to resultChan
+        Errors to errorChan
+
+Stage 3: Aggregator (Fan-In)
+      Collects processed results
+
+      Prints:
+      Worker ID
+      Input value
+      Output value
+      Processing time
+
+Stops pipeline immediately if:
+   Error count reaches K
+   OR context is cancelled
+
+
+⛔ Failure Rules
+
+    If K errors occur:
+    Cancel the context
+    Stop generator and processors
+    Drain remaining channels safely
+    No goroutine leak
+    No panic on closed channels
